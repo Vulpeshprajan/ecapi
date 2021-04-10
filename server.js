@@ -1,4 +1,7 @@
 import express from 'express';
+import dotenv from "dotenv"
+dotenv.config();
+
 
 import  cors  from "cors";
 import morgan from "morgan";
@@ -12,6 +15,8 @@ const PORT = process.env.PORT || 8000
  app.use(express.urlencoded({extended: false }))
  app.use(express.json())
 
+ import mongoClient from "./config/db.js";
+ mongoClient();
 //  load router
 
 import loginRouter from "./routers/login.router.js";
@@ -37,6 +42,7 @@ app.use((req,res, next) => {
 
 // handle error
 import { handleError } from "./utils/errorHandler.js";
+
 app.use ((error,req, res, next) =>{
   handleError(error,res); 
 

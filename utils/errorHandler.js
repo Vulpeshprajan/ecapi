@@ -5,6 +5,7 @@ export const handleError = (error, res) => {
     
 
     res.json({
+        status:"error",
         message:error.message,
 
     });
